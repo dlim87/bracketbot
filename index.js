@@ -22,3 +22,9 @@ client.on('message', message => {
         message.channel.send("you wanted some buttons?", button)
     }
 })
+client.on('clickButton', async (button) =>{
+    await button.clicker.fetch()
+    const user = button.clicker.user
+    console.log(`${user.username} (${user.id}): clicked on ${button.id}`)
+    await button.reply.send('one!')
+})
