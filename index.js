@@ -1,9 +1,9 @@
-const Discord = require('discord.js')
-const client = new Discord.Client()
+const { Client, Intents } = require('discord.js')
 const dotenv = require('dotenv')
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS]})
+
 dotenv.config()
-const disbut = require('discord-buttons')
-disbut(client)
 
 client.once('ready', () =>{
     console.log("Bot Ready!")
@@ -11,20 +11,17 @@ client.once('ready', () =>{
 
 client.login(process.env.TOKEN)
 
-let button = new disbut.MessageButton()
-    .setLabel('one')
-    .setID('one')
-    .setStyle('blurple')
 
-client.on('message', message => {
-    console.log(`message recieved: ${message.content}`)
-    if(message.content=='!buttons') {
-        message.channel.send("you wanted some buttons?", button)
-    }
-})
-client.on('clickButton', async (button) =>{
-    await button.clicker.fetch()
-    const user = button.clicker.user
-    console.log(`${user.username} (${user.id}): clicked on ${button.id}`)
-    await button.reply.send('one!')
-})
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'server') {
+		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+	} else if (commandName === 'user') {
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+	}
+});
