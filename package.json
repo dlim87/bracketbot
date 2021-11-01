@@ -1,0 +1,25 @@
+{
+  "name": "bracketbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlim87/bracketbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlim87/bracketbot/issues"
+  },
+  "homepage": "https://github.com/dlim87/bracketbot#readme",
+  "dependencies": {
+    "discord.js": "^13.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  }
+}
